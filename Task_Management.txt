@@ -1,0 +1,35 @@
+Requirement: 
+===================================
+ 1. Design and implement a user login and authentication system
+ 2. Create a task management system that allows user to:
+ 		a. Add, view, mark as completed, and delete tasks
+ 3. Use file handling to store user credentials and tasks persistently
+ 4. Create an interactive menu-driven interface to manage tasks
+
+ Design and Method explanation:
+====================================
+ 1. login(): This function will take care of logging the user to the task management system and if username is not found, then it will also ask user to register to access the task management system. User will have the choice to either register to exit the system
+
+ 2. register(): This function will help users to register to the task management system. It will also ensure that usernames are unique and no 2 users will have the same username. Also, for security purpose, the system will use python's hashlib library to encrypt the password using sha256 before persisting it into the file. Post successful registration, the user will have to re-login to the system using the created username and password to access task management system. The register method will call save_users function that will store the list of users in users.json file with key as username and encrypted password as value.
+
+ 3. load_tasks(): This function is called once the user is successfully logged into the task management system. The function will ensure to load the tasks corresponding to the logged in user only.
+
+ 4. add_task(): This function will help to add tasks to the users task list.
+
+ 5. view_tasks(): This function will show all the tasks that are created by the user.
+
+ 6. mark_as_complete(): This function will first show the list of tasks present for the user and user will be asked to enter the task ID that the user wants to mark as complete. If the user enters a valid task ID, then the task status will be updated to Completed but if the user enters an incorrect task ID, then function will return to main menu with an error message that task ID is invalid. User will have to choose the appropriate option from the main menu again.
+
+ 7. delete_task(): This function will first show the list of tasks present for the user and user will be asked to enter the task ID that the user wants to delete. If the user enters a valid task ID, then the task will be delete but if the user enters an incorrect task ID, then function will return to main menu with an error message that task ID is invalid. User will have to choose the appropriate option from the main menu again.
+
+ 8. save_tasks(username): This function will be called when the user decides to logout from the task management system. The function will take username as a parameter and it will create a <username>.json file that will contain all the tasks that the user created/modified.
+
+ 9. save_users(): This function is called whenever the user registers to the task management system. It will dump all the user list to users.json file.
+
+ 10. load_users(): This is the first function that will be called upon launching the application as it will load all the user list in a dictionary for authenticating the users who try to access the task management system.
+
+ 11. check_task_list(): This is a utility function to check the length of the task list.
+
+ 12. hash(): This is a utility function to encrypt the password before persisting it into the users.json file.
+
+ Note: sys.exit() function is printing the SystemExit stacktrace. This is the issue with jupiter notebook and should work fine if we write the code in python files with .py extenstion. This is not an error but simply a warning message.
